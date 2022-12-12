@@ -17,19 +17,20 @@ non-static -> non-static		[참조변수.]변수명;
 class Ex05{
 
 public static int su1=1111;
-public int su2=222;
+public int su2=2222;
 public static void main(String[] args){
-	su1=3333;
-	//System.out.println(su1);
-	Ex05 me = new Ex05();
-	//System.out.println(me.su2);
-	me.func01();
-	System.out.println("main su1 ="+su1);
+	Ex05 me;
+	//me = new Ex05(); //한번 초기화 하기 때문에 2221,2222,2223,4'''5'''6'''
+	for(int i=0;i < 5; i++){
+	 //참조변수는 최대한 반복문 넣어서 사용하지 말것.
+	me = new Ex05(); //매번 2222초기값을 하기 때문에 2222,2222,2222,
+	me.su2++;
+	me.func01();	//가리키기만 했지 지정은 안했기 때문에 출력은 0이 나온다. 
+}
+
+
 }
 public void func01(){
-	System.out.println("func01 su1 ="+su1);
-	su1++;
-	System.out.println(su1);
 	System.out.println(su2);
 }
 }
