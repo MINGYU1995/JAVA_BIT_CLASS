@@ -1,0 +1,15 @@
+class Lec03{
+
+}
+
+
+class Ex03{
+
+public static void main(String[] args){
+	Lec03 you;	// 주소의 패턴 0x0000~0xffff 메모리 주소 공간확보 범위.
+	you = new Lec03();
+	System.out.println(you);
+
+	
+}
+}

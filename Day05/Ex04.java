@@ -4,7 +4,7 @@ class Ex04{
 static -> static			[클래스명.]메서드명(); //대괄호는 생략이 가능한의미
 static -> non-static			참조변수.메서드();
 non-static -> static			[클래스명.]메서드명();
-non-static -> non-static		[참조변수.]메서드명();
+non-static -> non-static		[this.]메서드명();
 
 
 */
