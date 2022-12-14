@@ -30,11 +30,12 @@ public static void main(String[] args){
 		mun2 += "\u25A0" + " ";
 		//msg3 += i;
 		
-		
-		if(i%3==0){
+				
+		if(i%3==0){	//다음에 +3 +5일때 
 			mun += "\n";
 			mun2 += "\n";
 			//msg3 += "\n";
+			msg3 += i-1;
 		}
 
 	}
