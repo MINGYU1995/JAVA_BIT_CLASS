@@ -36,14 +36,9 @@ public class Ex11 {
 				}
 			}
 		}
-		
 		for(int i = 0; i<arr.length; i++) {
 			if(i!=6 && arr[i]<'0' || arr[i]>'9')boo = true; //arr[원소] 원소의 범위 밖인 조건을 걸어서 해당없음을 만든다.
-		}
-		
-		
-		
-		
+		}	
 		if(arr[6]!='-') {
 			System.out.println("입력확인바랍니다.(000000-0000000)");
 		}
