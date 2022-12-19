@@ -24,7 +24,8 @@ public class Ex07 {
 	float allSum = 0;
 	char score = ' ';
 	static int allCount = 0;
-	float sum = 0 , avg = 0;
+	double avg = 0;
+	int sum = 0;
 	String list =""; 
 	String [] students = new String[10]; // 상세이력에 저장할 int형 배열
 	String [] stuList = new String[10];
@@ -33,10 +34,9 @@ public class Ex07 {
 
 	
 	Scanner calsc = new Scanner(System.in);
-
+	static int cv = 100;
 	public static void main(String[] args) {
 		int firstInput = 0;
-	
 		System.out.println("학생성적관리프로그램(0.2.0)");
 		//System.out.println("1.리스트 2.입력 3.삭제 4.상세보기 0.종료>");
 		Scanner Insc = new Scanner(System.in);
@@ -67,6 +67,18 @@ public class Ex07 {
 		while(allCount > i) {
 			i++;
 			System.out.print("새로 입력할 학번을 입력해주세요:");
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			studentNumber = calsc.nextInt();
 			
 			System.out.print("java의 성적은?");
@@ -79,10 +91,8 @@ public class Ex07 {
 			framework = calsc.nextInt();
 			
 			sum = java+web+framework;
-			avg = sum/3;
+			avg =sum*100/3/100.0;
 			
-			String avg2 = String.format("%.2f", avg);
-			String sum2 = String.format("%.2f", sum);
 			
 			allSum += (int)avg;
 			allSum = allSum/sumCount;
@@ -99,7 +109,7 @@ public class Ex07 {
 			stuList[count] = "학번:"+studentNumber +"\njava:"+ java+"\nweb:"+web+"\nframework:"+framework+"\n ---------\n";
 			studentInputNumber[count] = studentNumber; //입력받을때마다 학생의 학번을 저장.
 			//상세보기 - 각 학점 , 합계  , 평균학점. // 총점 /학생평균/전체평균 /학점
-			students[count] = studentNumber+":학번의 학점은"+score+"이고"+"합계는"+sum2+"이고"+"평균총점은 "+avg2+ "입니다.학생 전체평균은 :"+allSum2+"점입니다. \n"; //소숫점 고쳐야함. //상세
+			students[count] = studentNumber+":학번의 학점은"+score+"이고"+"합계는"+sum+"이고"+"평균총점은 "+avg+ "입니다.학생 전체평균은 :"+allSum2+"점입니다. \n"; //소숫점 고쳐야함. //상세
 			count++;
 			sumCount++;
 		}
