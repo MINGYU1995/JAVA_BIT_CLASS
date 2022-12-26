@@ -61,17 +61,33 @@ class ChuChum{
 	}
 }
 
-class LottoBuy extends ChuChum{
-	
-	
+class LottoBuy extends ChuChum{ //수동
+	void Buy(int [] buyList) {
+		for (int i = 0; i < buyList.length; i++) {
+		//buyList 정수배열을 chuchum 클래스에 공유해줘야.
+			//System.out.print(buyList[i]);	입력번호 출력
+		}
+	}	
 }
 
 
 public class Ex12 {
 
 	public static void main(String[] args) {
-		System.out.println("로또추점 시작!");
 		ChuChum Chu = new ChuChum();
+		LottoBuy LoBuy = new LottoBuy();
+		Scanner sc = new Scanner(System.in);
+		int [] buy = new int[6];
+		
+		for (int i = 0 ; i < 6 ; i++) {
+			buy[i] = sc.nextInt();
+		}
+		LoBuy.Buy(buy);
+		
+			
+	
+		System.out.println("로또추점 시작!");
+		
 		Chu.lotGet();
 		Chu.Timer();
 		

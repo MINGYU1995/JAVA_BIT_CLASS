@@ -110,6 +110,7 @@ public class MinSuCode {
 		// 번호 확인
 		myLotto.buyLotto(choiceNum);
 		
+		
 		System.out.println();
 		Thread.sleep(200);
 		
