@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class Ex19 {
-
+	
 	public static void main(String[] args) {
 		String msg = "한글도 잘 \t나옵니다";
 		byte[] arr = msg.getBytes();

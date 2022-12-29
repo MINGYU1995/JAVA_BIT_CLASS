@@ -5,7 +5,7 @@ public class Ex01 {
 	public static void main(String[] args) {
 		String msg = "abcdefg hijklmn";
 		byte[] buf = new byte[2];
-		File f = new File("lec01.bin");
+		File f = new File("lec01.txt");
 		OutputStream os;
 		
 		try {
