@@ -10,12 +10,12 @@ class Student{
 public class Ex15 {
 static String result = "";
 	public static void main(String[] args) {
+		
 		File f = new File("TestList.txt");
 		OutputStream os;
+		
 		List<Student> list = new ArrayList<Student>();
-		Date date = new Date(f.lastModified());
-		SimpleDateFormat sdf = new SimpleDateFormat("a hh:MM");
-		result += sdf.format(date) + "\t";
+		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("학점 계산기 (ver 0.5.0)");
 		boolean boo = true;
@@ -24,6 +24,11 @@ static String result = "";
 		while(boo) {
 			//6번 들어가 있는 데이터를 파일형태로 출력시키기.
 			//7번 저장되어있는 데이터 불러오기.
+			
+			Date date = new Date(f.lastModified());
+			SimpleDateFormat sdf = new SimpleDateFormat("a hh:MM");
+			result += sdf.format(date) + "\t";
+			
 			System.out.print("1.리스트 2.보기 3.입력 4.수정 5.삭제 0.종료>");
 			int input = sc.nextInt();
 			

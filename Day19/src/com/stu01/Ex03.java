@@ -27,7 +27,7 @@ public class Ex03 {
 					
 					try {
 						is = new FileInputStream(f);
-						while(input=is.read()! = -1)
+						//while(input=is.read()! = -1)
 						if(is!=null)is.close();
 					}catch (FileNotFoundException e) {
 						e.printStackTrace();
@@ -42,7 +42,7 @@ public class Ex03 {
 						arr4[i] =(byte) arr3[i];
 					}
 					
-					String msg = new String(arr4);
+				//	String msg = new String(arr4);
 					if(!msg.isEmpty()) {
 							msg = msg.substring(1,msg.length()-1);
 							String[] arr5 = msg.split("][");

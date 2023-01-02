@@ -22,7 +22,7 @@ public class Ex01 {
 				if(f.exists()) {
 				InputStream is = null;
 				try {
-					is = new FileInputStream(f);
+				//	is = new FileInputStream(f);
 					int cnt = 0;
 					while(true) {
 						cnt++;

@@ -1,40 +1,42 @@
 package com.ui;
+
 import java.awt.*;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class Ex14 extends Frame implements
-				MouseListener,ContainerListener{
-	Panel p = new Panel();
+public class Ex14 extends Frame
+				implements ContainerListener,MouseListener{
+	Panel p=new Panel();
+	Button btn=new Button("추가");
 	
 	public Ex14() {
 		p.addContainerListener(this);
-		Button btn = new Button("추가");
 		btn.addMouseListener(this);
 		p.add(btn);
 		add(p);
-		setBounds(500,100,300,400);
+		setBounds(500-1920,100,300,400);
 		setVisible(true);
 	}
 
 	public static void main(String[] args) {
-		Ex14 me = new Ex14();
-
+		Ex14 me=new Ex14();
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Label la = new Label("추가");
+		Label la=new Label("추가");
+		la.addMouseListener(this);
 		p.add(la);
-		validate(); //검사
-		revalidate(); //재검사.
-		repaint(); //다시그림.
+//		validate();//검사
+//		revalidate();//재검사
+//		repaint();//다시그림
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -46,12 +48,10 @@ public class Ex14 extends Frame implements
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-//		if(e.getSource().getClass().equals("java.awt.Label")) {
-//			System.out.println("label위로");
-//		}
 		if(e.getSource()!=btn) {
-			Label la = (Label) e.getSource();
-			la.
+			Label la=(Label) e.getSource();
+			la.setVisible(false);
+//			validate();
 		}
 	}
 
@@ -63,12 +63,13 @@ public class Ex14 extends Frame implements
 
 	@Override
 	public void componentAdded(ContainerEvent e) {
-		System.out.println("추가됨.");
+		System.out.println("추가됨");
 		validate();
 	}
 
 	@Override
 	public void componentRemoved(ContainerEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 
