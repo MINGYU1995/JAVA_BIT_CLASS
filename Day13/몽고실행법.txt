@@ -1,0 +1,10 @@
+eclips console 창 몽고디비 실행 명령어 
+lib 에 jar파일 필요
+
+D:\mongodb-win32-x86_64-windows-6.0.3\bin>mongod --console
+Error parsing command line: unrecognised option '--console'
+try 'mongod --help' for more information
+
+D:\mongodb-win32-x86_64-windows-6.0.3\bin>
+D:\mongodb-win32-x86_64-windows-6.0.3\bin>
+D:\mongodb-win32-x86_64-windows-6.0.3\bin>mongod --dbpath ../data/db --ipv6

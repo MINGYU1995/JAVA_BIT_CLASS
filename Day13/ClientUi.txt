@@ -1,0 +1,106 @@
+package Test;
+import javax.swing.JOptionPane;
+//[Reference] : 졸리운_곰, 「Java 알고리즘 - [SWT] MessageBox Example」 https://www.stechstar.com/user/zbxe/?mid=AlgorithmJava&document_srl=28394.
+import java.awt.*;
+import java.awt.event.*;
+//쓰레드 두개를 사용한다. 
+//-Dfile.encoding=MS949
+
+//output으로 입력id 파일 만들기 
+
+public class ClientUi extends Frame {
+	// Label,TextField,Button 객체맴버 선언
+	Label lbl_title, lbl_id, lbl_pwd;
+	TextField txt_id, txt_pwd;
+	Button btn_con, btn_cen;
+	RoomChat rch = new RoomChat();
+	
+	public ClientUi(String str) {
+		// Frame 생성자 호출(Frame창 타이틀 제목)
+		super(str);
+
+		setLayout(null);// 수동으로 컴포넌트 위치지정
+
+		// Label,TextField,Button객체생성
+		lbl_title = new Label("아이디와 암호를 입력하세요.");
+		lbl_id = new Label("아이디");
+		lbl_pwd = new Label("암  호");
+		txt_id = new TextField();
+		txt_pwd = new TextField();
+		btn_con = new Button("접속");
+		btn_cen = new Button("취소");
+	
+		// Label,TextField,Button 컴포넌트의 위치지정
+		lbl_title.setBounds(10, 25, 250, 30);
+		lbl_id.setBounds(10, 75, 40, 30);
+		lbl_pwd.setBounds(10, 115, 30, 30);
+		txt_id.setBounds(60, 75, 170, 30);
+		txt_pwd.setBounds(60, 115, 170, 30);
+		btn_con.setBounds(70, 155, 50, 30);
+		btn_cen.setBounds(130, 155, 50, 30);
+
+		txt_pwd.setEchoChar('*');// 암호가 *로 찍힌다.
+
+		// Label,TextField,Button컴포넌트를 Frame컨테이너에 붙히기
+		add(lbl_title);
+		add(lbl_id);
+		add(txt_id);
+		add(lbl_pwd);
+		add(txt_pwd);
+		add(btn_con);
+		add(btn_cen);
+
+		// WindowExit객체 생성하고 Frame창의 X(닫기) 이벤트 등록
+		this.addWindowListener(new WindowExit());
+		MouseClick mc = new MouseClick();// MouseClick객체 생성
+		btn_con.addMouseListener(mc);// 접속버튼 이벤트 등록
+		btn_cen.addMouseListener(mc);// 취소버튼 이벤트 등록
+		
+		setBounds(200,200,250,200);
+		setVisible(true);// Frame보기
+	}
+	
+
+	// WindowAdapter상속받고 WindowExit클래스 선언
+	class WindowExit extends WindowAdapter {
+		// Frame창의 x(닫기) 이벤트 처리
+		public void windowClosing(WindowEvent e) {
+			System.exit(0);
+		}
+	}
+
+	// MouseAdapter상속 받고 MouseClick클래스 선언
+	class MouseClick extends MouseAdapter {
+		// 접속버튼,취소버튼 이벤트 처리
+		public void mouseClicked(MouseEvent e) {
+			Object obj = e.getSource();// 이벤트 발생한 객체 반환
+			if (obj == btn_con)// 접속버튼
+				btn_con_MouseClicked(e);// btn_con_MouseClicked 메서드 호출
+			else if (obj == btn_cen)// 취소버튼
+				btn_cen_MouseClicked(e);// btn_cen_MouseClicked 메서드 호출
+		}
+		// 접속버튼의 이벤트 발생시 처리부분
+		public void btn_con_MouseClicked(MouseEvent e) {
+			if ((txt_id.getText().trim().equals("member")) & (txt_pwd.getText().trim().equals("abcd"))) {
+				System.out.println("회원님 환영합니다.");
+				JOptionPane.showMessageDialog(null, "반갑습니다.");
+				rch.setVisible(true);
+			}
+			else if ((txt_id.getText().trim().equals("guest")) & (txt_pwd.getText().trim().equals("guest")))
+			JOptionPane.showMessageDialog(null, "당신은 비회원 입니다.");
+			else
+				JOptionPane.showMessageDialog(null, "잘못 입력 하였습니다.");
+
+		}
+		// 취소버튼 발생시 처리부분(해당 TextField의 내용을 지운다.)
+		public void btn_cen_MouseClicked(MouseEvent e) {
+			txt_id.setText("");
+			txt_pwd.setText("");
+		}
+	}
+	public static void main(String args[]) {
+		
+		
+		new ClientUi("로그인 화면");// Frame창의 타이틀
+	}
+}
