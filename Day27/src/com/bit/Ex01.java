@@ -9,43 +9,68 @@ public class Ex01 {
       String driver = "com.mysql.jdbc.Driver";
       String url = "jdbc:mysql://localhost:3306/lecture";
       Map<String, String> env = System.getenv();
+      String user=env.get("local.mysql.user");
+	  String password=env.get("local.mysql.password"); 	
+      
       Connection conn = null;
       Statement stmt = null;
       ResultSet rs = null;
+      int index = 4;
+      int kor=3,eng=4,mat=5;
       
-      String sql = "select empno,ename,";
-      sql +="(select dname from dept b where b.deptno = a.deptno),";
-      sql += "(select loc from dept b where b.deptno=a.deptno)";
-      sql += "from emp a where deptno is not null";
-      
-      try {
-         Class.forName(driver);
-         conn = DriverManager.getConnection(url, env.get("local.mysql.user"), env.get("local.mysql.password"));
-         stmt = conn.createStatement();
-         rs = stmt.executeQuery(sql);
+ 
+//      String update = "UPDATE student SET kor = " + kor+",";
+//		update += "eng = " + eng +",";
+//		update += "mat = " + mat;
+//		update += " where stuNum = "+ index+";";
+      String addTable2 = "create table Sum(";
+      addTable2 += "name varchar(10),";
+      addTable2 += "stuNum int,";
+      addTable2 += "hap int,";
+      addTable2 += "stuAvg float,";
+      addTable2 += "hak varchar(2),";
+      addTable2 += "allavg float);";
 
-         while (rs.next()) {
-            System.out.print(rs.getString(1) + "\t");
-            System.out.print(rs.getString(2) + "\t");
-            if (rs.getString(3).length() < 6) {
-               System.out.print(rs.getString(3) + "\t\t");
-            } else {
-               System.out.print(rs.getString(3) + "\t");
-            }
-            System.out.print(rs.getString(4) + "\n");
-         }
-      } catch (ClassNotFoundException e) {
-         e.printStackTrace();
-      } catch (SQLException e) {
-         e.printStackTrace();
-      } finally {
-         try {
-            if (conn != null)
-               conn.close();
-         } catch (SQLException e) {
-            e.printStackTrace();
-         }
+		//System.out.println(find);
+      try {
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, user, password);
+			stmt = conn.createStatement();	
+			stmt.executeUpdate(addTable2);
+		
+			//stmt.executeUpdate(delete);
+//			while(rs.next()) {
+//					System.out.println(rs.getString(1) + "\t" + rs.getInt(2)+
+//							"\t" + rs.getInt(3)+"\t" + rs.getInt(4)
+//							+"\t" + rs.getInt(5));			
+//			}
+//			
+			//stmt.executeUpdate(insert);
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				
+			
+				if (stmt != null) { // 값이 들어가 있음
+					stmt.close(); // statement 닫음
+				}
+				if (conn != null) { // 디비 연결되어 있음
+					conn.close(); // connection닫아줌
+				}			
+			
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+      
       }
    }
-
 }
+
+

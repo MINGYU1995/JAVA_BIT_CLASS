@@ -19,7 +19,7 @@ class Student {
 //1.리스트,2.입력,3.삭제,4.수정,0.종료 ,5.저장 ,6.수정(저장),7,삭제(저장)
 public class Ex01 {
 	
-	static int firCnt = 0;
+
 	public static void main(String[] args) {
 		ArrayList<Student> list = new ArrayList<Student>();
 		String driver = "com.mysql.jdbc.Driver";
@@ -73,28 +73,33 @@ public class Ex01 {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				}				
+				}
+				///Student stu = new Student();
+				//System.out.println("이름\t학번\t국어\t영어\t수학");
+				for (int i = 0; i < list.size(); i++) {
+				//	stu = list.get(i);
+					//System.out.println(stu.name+"\t"+stu.stuNum+"\t"+stu.kor+"\t"+stu.eng+"\t"+stu.mat);
+				}
+				
 			}
-			//보기 학점 평균 까지 
+			//보기
 			if(input == 2) {
 				//학번 입력받아서 해당 컬럼 조회.
 				Student stu = new Student();
 				System.out.println("학번을 입력하세요>");
 				int stuNum = sc2.nextInt();
-			    String search = "select * from temp where stuNum = "+ stuNum;
+			    String search = "select * from student where stuNum = "+ stuNum;
 
 			    try {
 					Class.forName(driver);
 					conn = DriverManager.getConnection(url, user, password);
-					stmt = conn.createStatement();	
-					
+					stmt = conn.createStatement();		
 					rs = stmt.executeQuery(search);
-					System.out.println("학번\t합계\t평균\t학점\t전체평균\t");
+					System.out.println("이름\t학번\t국어\t영어\t수학");
 					while(rs.next()) {
 							System.out.println(rs.getString(1) + "\t" + rs.getInt(2)+
 									"\t" + rs.getInt(3)+"\t" + rs.getInt(4)
-									+"\t" + rs.getInt(5));	
-							
+									+"\t" + rs.getInt(5));			
 					}
 					
 					//stmt.executeUpdate(insert);
@@ -123,17 +128,11 @@ public class Ex01 {
 						e.printStackTrace();
 					}
 		      
-		      }				    	
-//				String sql ="insert into tmp(name,stuNum,hap,stuAvg,hak,allavg) values('"+stu.name+"','"+
-//						+sum+"','"
-//						+avg+"','"
-//						+score+"','"
-//						+allStudentAvg+"')";
-	
+		      }
+		   
 				
-} //2번 끝 
 				
-	
+			}
 			//입력
 			if(input == 3) {
 				Student stu = new Student();
@@ -155,27 +154,15 @@ public class Ex01 {
 				list.add(stu);
 				
 				//2. 계정연결	
-			    
-			    
 	      String addTable = "create table Student(";
 	      addTable += "name varchar(10),";
 	      addTable += "stuNum int,";
 	      addTable += "kor int,";
 	      addTable += "eng int,";
 	      addTable += "mat int);";
-	     //System.out.println("학번\\t합계\\t평균\\t학점\\t전체평균\\t"); 
-	      //상세보기 테이블을 따로 만듬.
-	      String addTable2 = "create table temp(";
-	      addTable2 += "name varchar(10),";
-	      addTable2 += "stuNum int,";
-	      addTable2 += "sum int,";
-	      addTable2 += "avg float,";
-	      addTable2 += "hak varchar(2),";
-	      addTable2 += "allavg float);";
-		  
+		    		
 			for (int i = 0; i < list.size(); i++) {
 				stu = (Student) list.get(i);
-				String tabCnt = "select count(*) from student;";
 			    String insert = "insert into student(name,stuNum,kor,eng,mat) values('"+stu.name+"','"+
 						+stu.stuNum+"','"
 						+stu.kor+"','"
@@ -186,12 +173,10 @@ public class Ex01 {
 					conn = DriverManager.getConnection(url, user, password);
 
 					stmt = conn.createStatement();
-					
+
 					if(addTable.isEmpty()) {
 						stmt.executeUpdate(addTable);
-						stmt.executeUpdate(addTable2);
 					}
-					//stmt.executeUpdate(sql);
 					stmt.executeUpdate(insert);
 					
 				}catch (SQLException e) {
@@ -318,8 +303,83 @@ public class Ex01 {
 			
 } //main끝
 
+	
+	
 }
-
+//	public static void insertDb() {
+//	
+//		String driver = "com.mysql.jdbc.Driver";
+//	    String url = "jdbc:mysql://localhost:3306/lecture";
+//	    Map<String, String> env = System.getenv();
+//	    String user=env.get("local.mysql.user");
+//		String password=env.get("local.mysql.password"); 	
+//	    Connection conn = null;
+//	    Statement stmt = null;
+//	    ResultSet rs = null;
+//	    
+//	 
+//			//2. 계정연결
+//	   
+//	
+//		
+//			
+//			
+//			
+//			
+//			
+//		
+//      String addTable = "create table Student(";
+//      addTable += "name varchar(10),";
+//      addTable += "stuNum int,";
+//      addTable += "kor int,";
+//      addTable += "eng int,";
+//      addTable += "mat int);";
+//	    
+//		
+//		for (int i = 0; i < list.size(); i++) {
+//			stu = (Student) list.get(i);
+//		    String insert = "insert into student(name,stuNum,kor,eng,mat) values('"+stu.name+"','"+
+//					+stu.stuNum+"','"
+//					+stu.kor+"','"
+//					+stu.eng+"','"
+//					+stu.mat+"')";
+//			try {
+//				Class.forName(driver);
+//				conn = DriverManager.getConnection(url, user, password);
+//
+//				stmt = conn.createStatement();
+//
+//				if(addTable.isEmpty()) {
+//					stmt.executeUpdate(addTable);
+//				}
+//				stmt.executeUpdate(insert);
+//				
+//			}catch (SQLException e) {
+//				e.printStackTrace();
+//			} catch (ClassNotFoundException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}finally {
+//				try {
+//					
+//				if(i==list.size()) {
+//					if (stmt != null) { // 값이 들어가 있음
+//						stmt.close(); // statement 닫음
+//					}
+//					if (conn != null) { // 디비 연결되어 있음
+//						conn.close(); // connection닫아줌
+//					}			
+//				}
+//					
+//					
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//				// 이클립스는 자동커밋이라 데이터가 자동으로 저장된다.
+//			}
+//		}
+//		
+//	}
 
 
 
